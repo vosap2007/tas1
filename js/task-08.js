@@ -1,9 +1,9 @@
 const boxesEl = document.querySelector(['#boxes']);
 const renderBtnEl = document.querySelector('[data-action="render"]');
 const destroyBtnEl = document.querySelector('[data-action="destroy"]');
+
 const inputEl = document.querySelector('input');
-
-
+const colors = [ "red", "blue", "green", "orange", "aqua", "violet", "tomato" ];
 let inputVlue = 0;
 
 inputEl.addEventListener('input',  e =>  
@@ -13,7 +13,9 @@ renderBtnEl.addEventListener('click', () => {
     howManyTimesCall(inputVlue);
 })
 
-const colors = [ "red", "blue", "green", "orange", "aqua", "violet", "tomato" ];
+destroyBtnEl.addEventListener('click', () => {
+    destroyBoxes();
+})
 
 function createsRandomColor(arrColors) {
         return arrColors[Math.floor(Math.random() * arrColors.length)];
@@ -21,9 +23,11 @@ function createsRandomColor(arrColors) {
 
 function howManyTimesCall(amount) {
     let sizeBox = 30;
+
 for (let i = 0; i < amount; i++) {
     const color = createsRandomColor(colors);
     const newSize = sizeBox += 30;
+
     createBoxes(color, newSize);
 }}
 
@@ -35,4 +39,8 @@ function createBoxes(color, newSize) {
    divEl.style.backgroundColor = color;
    boxesEl.append(divEl);
 };
+
+function destroyBoxes() {
+    boxesEl.remove('divEl');
+}
 
