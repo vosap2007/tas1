@@ -3,17 +3,14 @@ const renderBtnEl = document.querySelector('[data-action="render"]');
 const destroyBtnEl = document.querySelector('[data-action="destroy"]');
 const inputEl = document.querySelector('input');
 
-function valueInput() {
-    inputEl.addEventListener('input', e => {
-  console.log(e.currentTarget.value);  
-})}
 
-console.log(valueInput())
+let inputVlue = 0;
 
-
-
+inputEl.addEventListener('input',  e =>  
+inputVlue = e.currentTarget.value);  
+    
 renderBtnEl.addEventListener('click', () => {
-    howManyTimesCall(7);
+    howManyTimesCall(inputVlue);
 })
 
 const colors = [ "red", "blue", "green", "orange", "aqua", "violet", "tomato" ];
@@ -23,15 +20,18 @@ function createsRandomColor(arrColors) {
 };
 
 function howManyTimesCall(amount) {
+    let sizeBox = 30;
 for (let i = 0; i < amount; i++) {
     const color = createsRandomColor(colors);
-    createBoxes(color);
+    const newSize = sizeBox += 30;
+    createBoxes(color, newSize);
 }}
 
-function createBoxes(color) {
+function createBoxes(color, newSize) {
    const divEl = document.createElement('div');
-   divEl.style.width = '30px';
-   divEl.style.height = '30px';
+
+   divEl.style.width = `${newSize}px`;
+   divEl.style.height = `${newSize}px`;
    divEl.style.backgroundColor = color;
    boxesEl.append(divEl);
 };
